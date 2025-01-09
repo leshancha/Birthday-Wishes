@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .cat {
+            position: fixed;
+            bottom: 20px;
+            width: 120px;
+            height: 80px;
+        }
+
+        /* Position cats in corners */
+        .cat:first-child {
+            left: 20px;
+        }
+
+        .cat:last-child {
+            right: 20px;
+        }
+
+        /* Rest of the styles remain the same */
+        .body.tabby {
+            position: absolute;
+            width: 120px;
+            height: 80px;
+            background: linear-gradient(45deg, #D2691E, #CD853F);
+            border-radius: 50px;
+            z-index: 1;
+            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.2);
+        }
+
+        .body.siamese {
+            position: absolute;
+            width: 120px;
+            height: 80px;
+            background: linear-gradient(45deg, #8B4513, #A0522D);
+            border-radius: 50px;
+            z-index: 1;
+            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.2);
+        }
+
+        .head.tabby {
+            position: absolute;
+            width: 70px;
+            height: 65px;
+            background: linear-gradient(45deg, #D2691E, #CD853F);
+            border-radius: 50%;
+            top: -30px;
+            left: 25px;
+            z-index: 2;
+        }
+
+        .head.siamese {
+            position: absolute;
+            width: 70px;
+            height: 65px;
+            background: linear-gradient(45deg, #4A3728, #5C4033);
+            border-radius: 50%;
+            top: -30px;
+            left: 25px;
+            z-index: 2;
+        }
+
+        .ear {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            top: -45px;
+            animation: earWiggle 2s infinite;
+        }
+
+        .tabby .ear {
+            border-bottom: 30px solid #D2691E;
+        }
+
+        .siamese .ear {
+            border-bottom: 30px solid #4A3728;
+        }
+
+        .ear-left {
+            left: 30px;
+            transform: rotate(-20deg);
+        }
+
+        .ear-right {
+            right: 30px;
+            transform: rotate(20deg);
+        }
+
+        .inner-ear {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 20px solid #FFA07A;
+            bottom: -28px;
+            left: -8px;
+            opacity: 0.7;
+        }
+
+        .eye {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #FFE5B4;
+            border-radius: 50%;
+            top: 15px;
+            animation: blink 4s infinite;
+        }
+
+        .eye-left { left: 15px; }
+        .eye-right { right: 15px; }
+
+        .pupil {
+            position: absolute;
+            width: 10px;
+            height: 15px;
+            background: #000;
+            border-radius: 50%;
+            top: 2px;
+            left: 5px;
+            animation: lookAround 8s infinite;
+        }
+
+        .siamese .pupil {
+            background: #0066cc;
+        }
+
+        .nose {
+            position: absolute;
+            width: 12px;
+            height: 8px;
+            background: #FFA07A;
+            border-radius: 40% 40% 60% 60%;
+            top: 30px;
+            left: 29px;
+        }
+
+        .tail {
+            position: absolute;
+            width: 60px;
+            height: 10px;
+            right: -30px;
+            bottom: 30px;
+            border-radius: 0 5px 5px 0;
+            transform-origin: left;
+            animation: tailWag 3s infinite;
+        }
+
+        .tabby .tail {
+            background: linear-gradient(45deg, #D2691E, #CD853F);
+        }
+
+        .siamese .tail {
+            background: linear-gradient(45deg, #8B4513, #A0522D);
+        }
+
+        .whisker {
+            position: absolute;
+            width: 30px;
+            height: 1px;
+            background: #FFFFFF;
+            margin: 4px 0;
+            box-shadow: 0 0 2px rgba(0,0,0,0.2);
+        }
+
+        .whiskers-left {
+            position: absolute;
+            top: 35px;
+            left: -25px;
+        }
+
+        .whiskers-right {
+            position: absolute;
+            top: 35px;
+            right: -25px;
+        }
+
+        .whiskers-left .whisker:nth-child(1) { transform: rotate(-10deg); }
+        .whiskers-left .whisker:nth-child(2) { transform: rotate(-5deg); }
+        .whiskers-left .whisker:nth-child(3) { transform: rotate(0deg); }
+
+        .whiskers-right .whisker:nth-child(1) { transform: rotate(10deg); }
+        .whiskers-right .whisker:nth-child(2) { transform: rotate(5deg); }
+        .whiskers-right .whisker:nth-child(3) { transform: rotate(0deg); }
+
+        .paw {
+            position: absolute;
+            width: 20px;
+            height: 15px;
+            border-radius: 50%;
+            bottom: -5px;
+        }
+
+        .tabby .paw {
+            background: #CD853F;
+        }
+
+        .siamese .paw {
+            background: #A0522D;
+        }
+
+        .paw1 { left: 15px; }
+        .paw2 { left: 40px; }
+        .paw3 { right: 40px; }
+        .paw4 { right: 15px; }
+
+        @keyframes tailWag {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-20deg); }
+        }
+
+        @keyframes blink {
+            0%, 96%, 98% { transform: scaleY(1); }
+            97% { transform: scaleY(0.1); }
+        }
+
+        @keyframes earWiggle {
+            0%, 100% { transform: rotate(-20deg); }
+            50% { transform: rotate(-25deg); }
+        }
+
+        @keyframes lookAround {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(3px, -2px); }
+            75% { transform: translate(-3px, 2px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cat">
+            <div class="body tabby">
+                <div class="paw paw1"></div>
+                <div class="paw paw2"></div>
+                <div class="paw paw3"></div>
+                <div class="paw paw4"></div>
+            </div>
+            <div class="head tabby">
+                <div class="ear ear-left">
+                    <div class="inner-ear"></div>
+                </div>
+                <div class="ear ear-right">
+                    <div class="inner-ear"></div>
+                </div>
+                <div class="eye eye-left">
+                    <div class="pupil"></div>
+                </div>
+                <div class="eye eye-right">
+                    <div class="pupil"></div>
+                </div>
+                <div class="nose"></div>
+                <div class="whiskers whiskers-left">
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                </div>
+                <div class="whiskers whiskers-right">
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                </div>
+            </div>
+            <div class="tail"></div>
+        </div>
+        <div class="cat">
+            <div class="body siamese">
+                <div class="paw paw1"></div>
+                <div class="paw paw2"></div>
+                <div class="paw paw3"></div>
+                <div class="paw paw4"></div>
+            </div>
+            <div class="head siamese">
+                <div class="ear ear-left">
+                    <div class="inner-ear"></div>
+                </div>
+                <div class="ear ear-right">
+                    <div class="inner-ear"></div>
+                </div>
+                <div class="eye eye-left">
+                    <div class="pupil"></div>
+                </div>
+                <div class="eye eye-right">
+                    <div class="pupil"></div>
+                </div>
+                <div class="nose"></div>
+                <div class="whiskers whiskers-left">
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                </div>
+                <div class="whiskers whiskers-right">
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                </div>
+            </div>
+            <div class="tail"></div>
+        </div>
+    </div>
+</body>
+</html>

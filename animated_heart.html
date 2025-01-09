@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.cdnjs.com/css?family=Dancing+Script" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0);
+    }
+
+    .heart-container {
+      position: relative;
+      width: 400px;
+      height: 450px;
+      opacity: 0;
+      animation: showContainer 1s ease-out forwards 10s;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ffeb3b;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .sparkle:nth-child(1) { top: 20%; left: 10%; animation: showSparkle 0.5s forwards 10s, floatSparkle 3s infinite 10s, glitter 1s infinite 10s; }
+    .sparkle:nth-child(2) { top: 30%; right: 10%; animation: showSparkle 0.5s forwards 10s, floatSparkle 4s infinite 10s, glitter 1.2s infinite 10s; }
+    .sparkle:nth-child(3) { bottom: 30%; left: 15%; animation: showSparkle 0.5s forwards 10s, floatSparkle 3.5s infinite 10s, glitter 0.8s infinite 10s; }
+    .sparkle:nth-child(4) { bottom: 40%; right: 15%; animation: showSparkle 0.5s forwards 10s, floatSparkle 4.5s infinite 10s, glitter 1.5s infinite 10s; }
+
+    .title {
+      position: absolute;
+      width: 100%;
+      top: -60px;
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 32px;
+      color: #ff3e3e;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+      animation: titleGlow 2s infinite 10s;
+    }
+
+    .title::before,
+    .title::after {
+      content: '✨';
+      margin: 0 10px;
+      font-size: 24px;
+      animation: twinkle 1.5s infinite 10s;
+    }
+
+    .heart {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 105%; 
+      left: 60%;
+      transform: translate(-50%, -50%) scale(1.2); /* Increased scale from 1 to 1.2 */
+    }
+
+    .heart:before,
+    .heart:after {
+      position: absolute;
+      content: "";
+      left: 150px;
+      top: 0;
+      width: 150px;
+      height: 240px;
+      background: rgba(255, 0, 0, 0.9);
+      border-radius: 150px 150px 0 0;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
+
+    .heart:after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }
+
+    .message {
+      position: absolute;
+      top: 80%;
+      left: 47%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      width: 200px;
+      text-align: center;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .emoji {
+      display: inline-block;
+      animation: emojiWiggle 2s infinite 10s;
+    }
+
+    @keyframes showContainer {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes showSparkle {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes titleGlow {
+      0% { text-shadow: 0 0 10px rgba(255, 62, 62, 0.5); }
+      50% { text-shadow: 0 0 20px rgba(255, 62, 62, 0.8); }
+      100% { text-shadow: 0 0 10px rgba(255, 62, 62, 0.5); }
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes floatSparkle {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(10px, -10px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes glitter {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes emojiWiggle {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart-container">
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="title">Happy Birthday</div>
+    <div class="heart" style="opacity: 0.5;"></div>
+    <div class="message">
+      <b>Happy birthday <span class="emoji">😍</span><span class="emoji">🎂</span><span class="emoji">🥳</span><br><br>
+      I wish you all the best in achieving your goals and dreams.<br><br>
+      Dreams are not just dreams.<br>
+      You can achieve them <span class="emoji">💖</span></b>
+    </div>
+  </div>
+</body>
+</html>
