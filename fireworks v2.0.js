@@ -69,7 +69,7 @@ $(function () {
 	var listLaunchSound = $("audio.launch");
 
 	// define array position of text
-	var textString = "happybirthdayElisha";
+	var textString = "happybirthday";
 	var textMatrix = [
 	// Update this matrix based on the new text layout as necessary
 	4.5, 0, 5.5, 0, 6.5, 0, 7.5, 0, 8.5, 0,
@@ -116,19 +116,6 @@ $(function () {
 			0, 0, 1, 0, 2, 0, 0, 1, 0, 2,
 			0, 3, 0, 4, 1, 4, 2, 4
 		],
-		e: [
-			2, 0, 1, 0, 0, 0, 0, 1, 0, 2,
-			1, 2, 2, 2, 0, 3, 0, 4, 1, 4,
-			2, 4
-		],
-		l: [
-			0, 0, 0, 1, 0, 2, 0, 3, 0, 4,
-			1, 4, 2, 4
-		],
-		s: [
-			1, 0, 2, 0, 0, 1, 1, 2, 2, 2,
-			3, 3, 0, 4, 1, 4
-		]
 	};
 
 
